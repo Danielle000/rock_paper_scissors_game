@@ -7,7 +7,7 @@ import random
 score=0
 rounds=0
 window=tk.Tk()
-window.geometry("1000x720")
+window.geometry("1000x780")
 frame=tk.Frame(window)
 frame.pack() 
 
@@ -29,17 +29,25 @@ kagit= ImageTk.PhotoImage(img_2)
 img_3=Image.open(Image_path + 'makas.png')   
 img_3=img_3.resize((250, 200), Image.ANTIALIAS)
 makas= ImageTk.PhotoImage(img_3) 
-
+ 
 def player_info():
-    labelText=StringVar()
-    labelText.set("Player Name")
-    labelDir=Label(window, textvariable=labelText, height=4 )
-    labelDir.pack(side="left")
+    def update_text():
+        player_name_label.configure(text=player_name.get()) 
 
-    player_name=StringVar(None)
-    dirpname=Entry(window,textvariable=player_name,width=20 )
-    dirpname.pack(side="left")
     
+    player_name_label=tk.Label(window,text="oyuncu adi")
+    player_name=StringVar(None)
+    player_name_entry=tk.Entry(window,textvariable=player_name,width=20 )
+    player_name_entry.pack()
+
+    
+        
+
+
+    btn_pl_name_add=tk.Button(window,text="Add",command=update_text)   
+    btn_pl_name_add.pack()
+    player_name_label.pack()
+
 player_info()
 
 def choose(secim):
