@@ -11,9 +11,6 @@ window.geometry("1000x780")
 frame=tk.Frame(window)
 frame.pack() 
 
-import os
-os.path.dirname(__file__)
-
 #Image_path = r'C:/Users/conko/OneDrive/Desktop/vscode_python/rock_paper_scissors_game/'
 Image_path = r'C:/Users/d_dekker/Private_Sources/rock_paper_scissors_game/rock_paper_scissors_game/'
 
