@@ -4,22 +4,29 @@ from PIL import ImageTk, Image
 from tkinter import  Label, Entry, StringVar
 
 import random
-
+score=0
+rounds=0
 window=tk.Tk()
 window.geometry("1000x720")
 frame=tk.Frame(window)
 frame.pack() 
 
-img_1=Image.open('C:\\Users\\conko\\OneDrive\\Desktop\\vscode_python\\rock_paper_scissors_game\\tas.png')   
+import os
+os.path.dirname(__file__)
+
+#Image_path = r'C:/Users/conko/OneDrive/Desktop/vscode_python/rock_paper_scissors_game/'
+Image_path = r'C:/Users/d_dekker/Private_Sources/rock_paper_scissors_game/rock_paper_scissors_game/'
+
+img_1=Image.open(Image_path + 'tas.png')   
 img_1=img_1.resize((250, 200), Image.ANTIALIAS)
 tas= ImageTk.PhotoImage(img_1) 
  
 
-img_2=Image.open('C:\\Users\\conko\\OneDrive\\Desktop\\vscode_python\\rock_paper_scissors_game\\kagit.png')   
+img_2=Image.open(Image_path + 'kagit.png')   
 img_2=img_2.resize((250, 200), Image.ANTIALIAS)
 kagit= ImageTk.PhotoImage(img_2) 
 
-img_3=Image.open('C:\\Users\\conko\\OneDrive\\Desktop\\vscode_python\\rock_paper_scissors_game\\makas.png')   
+img_3=Image.open(Image_path + 'makas.png')   
 img_3=img_3.resize((250, 200), Image.ANTIALIAS)
 makas= ImageTk.PhotoImage(img_3) 
 
@@ -36,17 +43,18 @@ def player_info():
 player_info()
 
 def choose(secim):
+    global rounds
+    rounds+=1
     code_of_game(secim)
 
-score=0
 def code_of_game(my_choice):
     global score
+    global rounds
     listem=['tas','kagit','makas']
     output=random.choice(listem)
-    
-    round=0
-    while round<10:
-               
+
+    if rounds<10:
+        print(rounds)
         if my_choice=="tas":
             if output=="tas":
                 score=score
@@ -57,7 +65,7 @@ def code_of_game(my_choice):
             else:
                 score=score    
                 print(f"Kaybettiniz! Kagit tasi sarar! Total Score: {score}")
-        if my_choice=="kagit":
+        elif my_choice=="kagit":
             if output=="kagit":
                 score=score
                 print(f"Berabere! Kagit-Kagida! Total Score: {score}") 
@@ -67,7 +75,7 @@ def code_of_game(my_choice):
             else:
                 score=score    
                 print(f"Kaybettiniz! Makas kagidi keser! Total Score: {score}")
-        if my_choice=="makas":
+        elif my_choice=="makas":
             if output=="makas":
                 score=score
                 print(f"Berabere! Makas-Makasa! Total Score: {score}") 
@@ -77,14 +85,14 @@ def code_of_game(my_choice):
             else:
                 score=score    
                 print(f"Kaybettiniz! Tas makasi kirar! Total Score: {score}")
-                break
-        round+=1
-    else:
+                
+    
         if score<500:
             print(f"10 round bitti!Yarismayi kaybettin!Puan:{score}") 
         else :
             print(f"10 round bitti!Kazandin!Puan:{score}") 
-       
+    else:
+        print('10 rounds are up!')
          
                
 
@@ -139,7 +147,7 @@ def how_to_quit( ):
       
 window.title("Oyun Oyna")
 
-photo=Image.open('C:\\Users\\conko\\OneDrive\\Desktop\\vscode_python\\rock_paper_scissors_game\\intro.png')
+photo=Image.open(Image_path + 'intro.png')
 bg = ImageTk.PhotoImage(photo)
  
 label=tk.Label(window,
